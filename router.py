@@ -3,6 +3,7 @@ import cherrypy
 import jinja2
 import os
 from back.api import Api
+from model import Count
 from cherrypy.lib.static import serve_file
 from jinja2 import Template, Environment, FileSystemLoader
 
@@ -16,10 +17,19 @@ env = Environment(loader = FileSystemLoader(template_dir), trim_blocks = True)
 class NewsProject(object):
 	def __init__(self):
 		self.api = Api()
+		self.count = Count()
 
 	@cherrypy.expose
 	def index(self):
 		return env.get_template('index.html').render()
+
+	@cherrypy.expose
+	def news_page(self, outer_id):
+		return env.get_template('single_news.html').render()
+
+	@cherrypy.expose
+	def news_list(self):
+		return env.get_template('news_list.html').render()
 
 if __name__ == '__main__':
 	conf = {

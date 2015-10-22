@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %} 新闻聚合网站 {% endblock title %}
+
+<!-- javascript -->
+{% block js %}
+<!-- HighCharts JS -->
+<script type="text/javascript" src="/front/static/highcharts/js/highcharts.js"></script>
+<script type="text/javascript" src="/front/static/highcharts/js/modules/exporting.js"></script>
+<script type="text/javascript" src="/front/static/highcharts/js/modules/drilldown.js"></script>
+
+<script type="text/javascript" src="/front/js/category.js"></script>
+{% endblock %}
+
+<!-- css -->
+{% block css %}
+<!-- HighCharts CSS -->
+<!-- Custom CSS -->
+{% endblock %}
+
+{% block main_content %}
+<div class="col-lg-12">
+	<h1 class="page-header">类别统计</h1>
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel-body">
+			<div class="form-group">
+				<label>请选择图表类型</label>
+				<label class="radio-inline">
+					<input type="radio" name="mychart" class="mychart" id= "column" value="column" onclick="chartfunc()" checked>Column
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="mychart" class="mychart" id= "bar" value="bar" onclick="chartfunc()">Bar
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="mychart" class="mychart" id= "pie" value="pie" onclick="chartfunc()">Pie
+				</label>
+			</div>
+			<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -6,28 +6,24 @@ import MySQLdb.cursors
 import json
 
 # staging
-"""
 DB_HOST = "172.31.19.9"
 DB_USER = "root"
 DB_PASSWORD = ""
 DB_NAME = "newsProject"
 CHARSET = "utf8"
 CURSOR_CLASS = MySQLdb.cursors.DictCursor
-"""
 
 # test
+"""
 DB_HOST = "127.0.0.1"
 DB_USER = "root"
 DB_PASSWORD = ""
 DB_NAME = "newsProject"
 CHARSET = "utf8"
 CURSOR_CLASS = MySQLdb.cursors.DictCursor
+"""
 
 class dbHelper():
-	def __init__(self):
-		self.conn = MySQLdb.connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, 
-									charset = CHARSET, cursorclass = CURSOR_CLASS)
-
 	def trans(self, result):
 		data = []
 		for d in result:
@@ -35,6 +31,8 @@ class dbHelper():
 		return data
 
 	def execute(self, operation):
+		self.conn = MySQLdb.connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, 
+					charset = CHARSET, cursorclass = CURSOR_CLASS)
 		cursor = self.conn.cursor()
 		try:
 			if isinstance(operation, unicode):
