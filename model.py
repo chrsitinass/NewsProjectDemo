@@ -22,3 +22,7 @@ class Count(object):
 	@cherrypy.expose
 	def source(self):
 		return env.get_template('source.html').render()
+
+	@cherrypy.expose
+	def datetime(self):
+		return env.get_template('datetime.html').render()

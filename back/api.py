@@ -112,7 +112,8 @@ class Api():
 	@cherrypy.expose
 	@cherrypy.tools.json_out()
 	def get_news_by_filter(self, filter=None):
-		filter = json.loads(filter)
+		if filter != None:
+			filter = json.loads(filter)
 		filters = self.gen_filter(filter)
 		sql = """
 				SELECT
@@ -164,3 +165,25 @@ class Api():
 				count[category][source] = num
 			count[category]['total'] = total
 		return count
+
+	@cherrypy.expose
+	@cherrypy.tools.json_out()
+	def count_news_by_date(self):
+		sql = """
+				SELECT
+					DATE(pubtime), COUNT(*)
+				FROM
+					temp_news
+				GROUP BY
+					DATE(pubtime)
+				ORDER BY
+					DATE(pubtime)
+			  """
+		result = db.execute(sql)
+		data = []
+		for r in result:
+			data.append({
+				'count': r['COUNT(*)'],
+				'date': str(r['DATE(pubtime)'])
+				})
+		return data
