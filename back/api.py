@@ -117,7 +117,7 @@ class Api():
 		filters = self.gen_filter(filter)
 		sql = """
 				SELECT
-					outer_id, title, source, pubtime, URL
+					outer_id, title, source, pubtime, URL 
 				FROM
 					temp_news
 				%s
@@ -187,3 +187,18 @@ class Api():
 				'date': str(r['DATE(pubtime)'])
 				})
 		return data
+
+	@cherrypy.expose
+	@cherrypy.tools.json_out()
+	def get_single_news(self, outer_id):
+		sql = """
+				SELECT
+					*
+				FROM
+					temp_news
+				WHERE
+					outer_id = '%s'
+			  """ % outer_id
+		result = db.execute(sql)
+		result[0]['pubtime'] = str(result[0]['pubtime'])
+		return result[0]

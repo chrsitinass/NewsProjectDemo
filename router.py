@@ -25,7 +25,11 @@ class NewsProject(object):
 
 	@cherrypy.expose
 	def news_page(self, outer_id):
-		return env.get_template('single_news.html').render()
+		return env.get_template('single_news.html').render(outer_id = outer_id)
+
+	@cherrypy.expose
+	def wordcloud(self, outer_id):
+		return env.get_template('wordcloud.html').render(outer_id = outer_id)
 
 	@cherrypy.expose
 	def news_list(self):
