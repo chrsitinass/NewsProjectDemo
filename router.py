@@ -37,13 +37,23 @@ class NewsProject(object):
 
 if __name__ == '__main__':
 	conf = {
-		'/': {
-			'tools.sessions.on': True,
-			'tools.response_headers.on': True
-		},
-		'/front': {
-			'tools.staticdir.on': True,
-			'tools.staticdir.dir': os.path.join(abs_dir, 'front')
+			'/': {
+				'tools.sessions.on': True,
+				'tools.response_headers.on': True,
+				'tools.staticdir.index': 'index.html'
+			},
+			'/front': {
+				'tools.staticdir.on': True,
+				'tools.staticdir.dir': os.path.join(abs_dir, 'front')
+			},
+			'/favicon.ico': {
+				'tools.staticfile.on': True,
+				'tools.staticdir.dir': '/front/img/favicon.png'
+			}
 		}
-	}
-	cherrypy.quickstart(NewsProject(), '/', conf)
+	"""
+	cherrypy.config.update({'server.socket_host': "172.31.19.37",
+							'server.socket_port': 8080})
+	"""
+	cherrypy.engine.start()
+	wsgiapp = cherrypy.tree.mount(NewsProject(), '/', conf)
