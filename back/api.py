@@ -4,6 +4,8 @@ import json
 from dbHelper import dbHelper
 
 db = dbHelper()
+print "connect SQL server!"
+
 category_mapping = {
 	u"热点": "hot",
 	u"财经": "finance",
@@ -54,10 +56,12 @@ class Api():
 			source.append(d['source'])
 		self.category = category
 		self.source = source 
+		print self.category
 
 	@cherrypy.expose
 	@cherrypy.tools.json_out()
 	def get_lastest_news(self, top=20):
+		print top
 		data = {}
 		for cate in self.category:
 			c = category_mapping[cate]
@@ -73,7 +77,9 @@ class Api():
 					LIMIT
 						1, %d
 				  """ % (cate, top)
+			print "select"
 			result = db.execute(sql)
+			print "crazy"
 			for d in result:
 				d['pubtime'] = str(d['pubtime'])
 			data[c] = result
@@ -123,6 +129,7 @@ class Api():
 				%s
 				ORDER BY
 					id DESC
+				LIMIT 1, 20000
 			  """ % filters
 		result = db.execute(sql)
 		for d in result:

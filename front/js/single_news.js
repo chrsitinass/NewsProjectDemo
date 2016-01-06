@@ -1,6 +1,6 @@
 var url = window.location.href;
 var outer_id = url.split('=')[1];
-var tags = ['\/ORG', '\/O', '\/GPE', '\/PERSON', '\/MISC', '\/LOC'];
+var tags = ['\/ORG', '\/O', '\/GPE', '\/PERSON', '\/MISC', '\/LOC', '\/T'];
 var punc = [',', '，', '.', '。', '!', '?', '？', '！', ':', '：', 
 			'\'', '’', '\"', '”', '“', '<', '《', '》', '>', '、',
 			'/', ';', '；', '[', ']', '{', '}', '\\', '|', '【', '】',
@@ -49,7 +49,7 @@ $(document).ready(function() {
 			var word_class = "";
 			var word_link = "";
 			if (word.contain("\/url=")) {
-				word_link = word.substring(word.indexOf("http:"), word.length - 1);
+				word_link = word.substring(word.indexOf("http"), word.length - 1);
 				word = word.replace(/\/url=.*/, "");
 				word_link = link_button.replace("__LINK__", word_link);
 			}
@@ -64,6 +64,8 @@ $(document).ready(function() {
 				word_class += " word_misc";
 			} else if (word.contain('LOC')) {
 				word_class += " word_loc";
+			} else if (word.contain('T')) {
+				word_class += " word_temp";
 			} else {
 				word_class += " word_none";
 			}

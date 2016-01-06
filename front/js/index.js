@@ -48,6 +48,7 @@ $(document).ready(function() {
 		dataType: "text"
 	}).done(function(response) {
 		response = JSON.parse(response);
+		console.log(response);
 		for (idx in category) {
 			cate = category[idx];
 			table = tables[idx];

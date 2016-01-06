@@ -40,6 +40,7 @@ if __name__ == '__main__':
 			'/': {
 				'tools.sessions.on': True,
 				'tools.response_headers.on': True,
+				#'tools.gzip.on': True,
 				'tools.staticdir.index': 'index.html'
 			},
 			'/front': {
@@ -54,6 +55,8 @@ if __name__ == '__main__':
 	"""
 	cherrypy.config.update({'server.socket_host': "172.31.19.37",
 							'server.socket_port': 8080})
-	"""
+	
 	cherrypy.engine.start()
-	wsgiapp = cherrypy.tree.mount(NewsProject(), '/', conf)
+	"""
+	cherrypy.quickstart(NewsProject(), '/', conf)
+	#cherrypy.tree.mount(NewsProject(), '/', conf)

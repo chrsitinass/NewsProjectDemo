@@ -1,6 +1,6 @@
 var url = window.location.href;
 var outer_id = url.split('=')[1];
-var tags = ['\/ORG', '\/O', '\/GPE', '\/PERSON', '\/MISC', '\/LOC'];
+var tags = ['\/ORG', '\/O', '\/GPE', '\/PERSON', '\/MISC', '\/LOC', '\/T'];
 var punc = [',', '，', '.', '。', '!', '?', '？', '！', ':', '：', 
 			'\'', '’', '\"', '”', '“', '<', '《', '》', '>', '、',
 			'/', ';', '；', '[', ']', '{', '}', '\\', '|', '【', '】',

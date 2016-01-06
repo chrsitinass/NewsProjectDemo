@@ -34,6 +34,9 @@ dd {
 .word_loc {
 	background-color: #99cc67;
 }
+.word_temp {
+	background-color: #FBE3BF;
+}
 .word_width {
 	padding-left: 0.8em;
 	padding-right: 0.8em;
