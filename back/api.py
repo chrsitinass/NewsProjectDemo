@@ -208,4 +208,5 @@ class Api():
 			  """ % outer_id
 		result = db.execute(sql)
 		result[0]['pubtime'] = str(result[0]['pubtime'])
+		print result[0]['content']
 		return result[0]

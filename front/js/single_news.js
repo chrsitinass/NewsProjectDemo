@@ -36,12 +36,22 @@ $(document).ready(function() {
 		$("#news_cate").text(response.cate);
 		$("#news_category").text(response.category);
 		response.content = response.content.replaceAll("\\", "");
+		
 		response.content_with_url = response.content_with_url.replaceAll("\\", "")
 															.replaceAll("``", "“")
 															.replaceAll("\"", "”")
 															.replaceAll("-LRB-", "(")
 															.replaceAll("-RRB-", ")");
-		$("#news_content").text(response.content);
+		var content = response.content.split("\n");
+		// console.log(content);
+		var cont = document.getElementById("news_content");
+		cont.innerHTML = "";
+		var blank = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+		for (para of content) {
+			// console.log(para);
+			cont.innerHTML += "<p>" + blank + para + "</p>";
+		}
+		// $("#news_content").text(response.content);
 		var fix = response.content_with_url;
 		fix = fix.split(/\n| /);
 		var word_seg = "";

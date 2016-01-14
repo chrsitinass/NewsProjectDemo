@@ -37,6 +37,7 @@ var layout = d3.layout.cloud()
         .text(function(d) {
             return d.key;
         })
+        .rotate(function() {return ~~(Math.random() * 2) * 90; })
         .on("end", draw);
 
 var svg = d3.select("#vis").append("svg")
@@ -135,7 +136,7 @@ function draw(data, bounds) {
             .style("opacity", 1);
     text.style("font-family", function(d) {
         return d.font;
-    })
+            })
             .style("fill", function(d) {
                 return fill(d.text.toLowerCase());
             })

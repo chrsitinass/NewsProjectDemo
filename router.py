@@ -40,7 +40,7 @@ if __name__ == '__main__':
 			'/': {
 				'tools.sessions.on': True,
 				'tools.response_headers.on': True,
-				#'tools.gzip.on': True,
+				'tools.gzip.on': True,
 				'tools.staticdir.index': 'index.html'
 			},
 			'/front': {
