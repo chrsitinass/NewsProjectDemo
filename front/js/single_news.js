@@ -30,7 +30,7 @@ $(document).ready(function() {
 		async: false
 	}).done(function(response) {
 		response = JSON.parse(response);
-		$("#news_title").text(response.title);
+		$("#news_title").text(response.title.replaceAll("\\", ""));
 		$("#news_source").text("来源: " + response.source);
 		$("#news_pubtime").text("发布日期: " + response.pubtime);
 		$("#news_cate").text(response.cate);
@@ -46,12 +46,14 @@ $(document).ready(function() {
 		// console.log(content);
 		var cont = document.getElementById("news_content");
 		cont.innerHTML = "";
-		var blank = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+		var blank = "　　";
 		for (para of content) {
-			// console.log(para);
-			cont.innerHTML += "<p>" + blank + para + "</p>";
+			if (para.startsWith("　") || para.startsWith(" ")) {
+				cont.innerHTML += "<p>" + para + "</p>";
+			} else {
+				cont.innerHTML += "<p>" + blank + para + "</p>";
+			}
 		}
-		// $("#news_content").text(response.content);
 		var fix = response.content_with_url;
 		fix = fix.split(/\n| /);
 		var word_seg = "";

@@ -5,6 +5,11 @@ var news_info_button = "<button type='button' class='btn btn-primary btn-xs btn-
 						"onClick=\"window.open('news_page?outer_id=__NEWSID__', '_blank')\">" +
 						"处理结果 <i class='fa fa-hand-o-right'></i>";
 
+String.prototype.replaceAll = function (find, replace) {
+	var str = this;
+	return str.replace(new RegExp(find.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g'), replace);
+};
+
 $(document).ready(function() {
 	$.ajax({
 		url: "/api/get_news_by_filter",
@@ -18,7 +23,7 @@ $(document).ready(function() {
 		for (r of response) {
 			var link = link_button.replace("__LINK__", r['URL']);
 			var news_info = news_info_button.replace("__NEWSID__", r['outer_id']);
-			row = [r['title'], r['pubtime'], r['source'] + " " + link, news_info];
+			row = [r['title'].replaceAll("\\", ""), r['pubtime'], r['source'] + " " + link, news_info];
 			data.push(row);
 		}
 		$("#news_list").dataTable({
