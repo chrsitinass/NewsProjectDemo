@@ -30,11 +30,11 @@ $(document).ready(function() {
 		async: false
 	}).done(function(response) {
 		response = JSON.parse(response);
-		$("#news_title").text(response.title.replaceAll("\\", ""));
+		document.getElementById("news_title").innerHTML = response.title.replaceAll("\\", "");
 		$("#news_source").text("来源: " + response.source);
 		$("#news_pubtime").text("发布日期: " + response.pubtime);
 		$("#news_cate").text(response.cate);
-		$("#news_category").text(response.category);
+		$("#news_category").text(response.category.replaceAll("\\", ""));
 		response.content = response.content.replaceAll("\\", "");
 		
 		response.content_with_url = response.content_with_url.replaceAll("\\", "")
@@ -43,7 +43,6 @@ $(document).ready(function() {
 															.replaceAll("-LRB-", "(")
 															.replaceAll("-RRB-", ")");
 		var content = response.content.split("\n");
-		// console.log(content);
 		var cont = document.getElementById("news_content");
 		cont.innerHTML = "";
 		var blank = "　　";

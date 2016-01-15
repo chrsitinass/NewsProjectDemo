@@ -24,15 +24,19 @@ function nth (d) {
 
 // Create a string representation of the date.
 function formatDate (date) {
+	var month = date.get("month") + 1;
+	return date.get("year") + "-" + month + "-" + date.get("date");
+	/*
 	return weekdays[date.get('day')] + ", " +
-		date.get('date') + nth(date.get('date')) + " " +
-		months[date.get('month')] + " " +
-		date.get('year');
+        date.get('date') + nth(date.get('date')) + " " +
+        months[date.get('month')] + " " +
+        date.get('year');
+    */
 }
 
 $(document).ready(function() {
 	var slider = document.getElementById('range');
-	var first_day = moment().subtract(3, 'months');
+	var first_day = moment().subtract(1, 'years');
 	$.ajax({
 		url: '/api/count_news_by_date',
 		contentType: "application/json; charset=utf-8",
@@ -44,48 +48,26 @@ $(document).ready(function() {
 		for (d of response) {
 			var cur = moment(d['date']);
 			if (cur > first_day) {
-				data.push([ Date.UTC(cur.get('year'), cur.get('month'), cur.get('date')), d['count'] ]);
+				data.push([Date.UTC(cur.get('year'), cur.get('month'), cur.get('date')), d['count']]);
 				range.push(cur.valueOf());
 			}
 		}
 		var number = range.length
-		/*
 		noUiSlider.create(slider, {
 			start: [ range[0], range[number - 1] ], // Handle start position
 			margin: 20, // Handles must be more than '20' apart
 			connect: true, // Display a colored bar between the handles
-			direction: 'rtl', // Put '0' at the bottom of the slider
 			behaviour: 'tap-drag', // Move handle on tap, bar is draggable
 			step: 24 * 3600000,
 			range: {
 				'min': range[0],
 				'max': range[number - 1]
-			},
-			pips: { // Show a scale with the slider
-				mode: 'steps',
-				density: 24 * 3600000
 			}
 		});
 
-		var tipHandles = $('.noUi-handle');
-		var tooltips = [];
-		for (var i = 0; i < tipHandles.length; i++) {
-			tooltips[i] = document.createElement('div');
-			tipHandles[i].appendChild(tooltips[i]);
-
-			tooltips[i].className += 'tooltips';
-			tooltips[i].innerHTML = '<strong>Value: </strong><span></span>';
-			tooltips[i] = tooltips[i].getElementsByTagName('span')[0];
-		}
-		slider.noUiSlider.on('update', function(values, handle){
-			console.log(handle);
-			tooltips[handle].innerHTML = formatDate(moment(parseInt(values[handle])));
-		});
-		*/
-		var chart_options = {
+		var basic_chart_options = {
 			chart: {
-				type: 'spline',
-				zoomType: 'x'
+				type: 'line'
 			},
 			title: {
             	text: ''
@@ -109,27 +91,62 @@ $(document).ready(function() {
 				enabled: false
 			},
 			plotOptions: {
-            	spline: {
-                	lineWidth: 4,
+            	line: {
+                	lineWidth: 3,
                 	states: {
                     	hover: {
-                        	lineWidth: 5
+                        	lineWidth: 4
                     	}
                 	},
                 	marker: {
                     	enabled: false
                 	},
                 	pointInterval: 3600000 * 24,
+                	color: "#3498db"
             	}
-        	},
-        	plotBands: [{
-
-        	}],
-			series: [{
-				name: 'total',
-				data: data
-			}]
+        	}
 		};
+		var chart_options = basic_chart_options;
+		chart_options.series = [{
+				name: '新闻数量',
+				data: data
+		}];
 		$('#container').highcharts(chart_options);
+		var container = $("#container").highcharts();
+
+		slider.noUiSlider.on('update', function(values, handle){
+			var startDate = parseInt(values[0]);
+			var endDate = parseInt(values[1]);
+			if (handle == 0) {
+				$("#from-text").attr('placeholder', formatDate(moment(startDate)));
+			} else {
+				$("#to-text").attr('placeholder', formatDate(moment(endDate)));
+			}
+			var new_data = [];
+			for (dd of data) {
+				if (dd[0] >= startDate) {
+					if (dd[0] <= endDate) {
+						new_data.push(dd);
+					} else {
+						break;
+					}
+				}
+			}
+			var plotBands = {
+				id: 'last',
+				from: startDate,
+				to: endDate,
+				color: '#FCFCDE'
+			};
+			container.xAxis[0].removePlotBand('last');
+			container.xAxis[0].addPlotBand(plotBands);
+
+			var new_chart_options = basic_chart_options;
+			new_chart_options.series = [{
+				name: '新闻数量', 
+				data: new_data
+			}];
+			$("#container2").highcharts(new_chart_options);
+		});
 	});
 });

@@ -77,9 +77,9 @@ class Api():
 					LIMIT
 						1, %d
 				  """ % (cate, top)
-			print "select"
+
 			result = db.execute(sql)
-			print "crazy"
+			
 			for d in result:
 				d['pubtime'] = str(d['pubtime'])
 			data[c] = result
@@ -208,5 +208,4 @@ class Api():
 			  """ % outer_id
 		result = db.execute(sql)
 		result[0]['pubtime'] = str(result[0]['pubtime'])
-		print result[0]['content']
 		return result[0]
