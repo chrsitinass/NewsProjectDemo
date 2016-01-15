@@ -175,6 +175,20 @@ class Api():
 
 	@cherrypy.expose
 	@cherrypy.tools.json_out()
+	def count_news_temp(self, typ):
+		sql = """
+				SELECT
+					%s, COUNT(*)
+				FROM
+					temp_news
+				GROUP BY
+					%s
+			""" % (typ, typ)
+		result = db.execute(sql)
+		return result
+
+	@cherrypy.expose
+	@cherrypy.tools.json_out()
 	def count_news_by_date(self):
 		sql = """
 				SELECT

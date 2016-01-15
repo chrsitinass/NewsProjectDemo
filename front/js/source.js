@@ -3,12 +3,67 @@ var source = [
 ];
 $(document).ready(function() {
 	$.ajax({
-		url: '/api/count_news_by_source',
+		// url: '/api/count_news_by_source',
+		url: '/api/count_news_temp?typ=source',
 		contentType: "application/json; charset=utf-8",
 		dataType: "text"
 	}).done(function (response) {
 		response = JSON.parse(response);
 		var data = [];
+		for (r of response) {
+			data.push({
+				name: r.source,
+				y: r['COUNT(*)']
+			});
+		}
+		var options = {
+			chart: {
+			},
+			colors: ["#1abc9c", "#2ecc71", "#3498db", "#9b59b6", "#34495e",
+    		"#f1c40f", "#e67e22", "#e74c3c", "#ecf0f1", "#95a5a6"],
+			title: {
+				text: ''
+			},
+			xAxis: {
+				type: 'category'
+			},
+			yAxis: {
+				title: {
+					margin: 10,
+					text: '数量'
+				}
+			},
+			legend: {
+				enabled: true
+			},
+			plotOptions: {
+				series: {
+					pointPadding: 0.2,
+					borderWidth: 0,
+					dataLabels: {
+						enabled: true
+					}
+				},
+				pie: {
+					shadow: false,
+					innerSize: '50%',
+					plotBorderWidth: 0,
+					allowPointSelect: true,
+					cursor: 'pointer',
+					size: '100%',
+					dataLabels: {
+						enabled: true,
+						format: '{point.name}: <b>{point.y}</b>'
+					}
+				}
+			},
+			series: [{
+				name: 'total',
+				colorByPoint: true,
+				data: data
+			}]
+		}
+		/*
 		var drilldown_data = {};
 		for (idx in source) {
 			s = source[idx];
@@ -92,6 +147,7 @@ $(document).ready(function() {
         		series: []
     		}
 		};
+		*/
 		options.chart.renderTo = 'container';
 		options.chart.type = 'column';
 		var chart = new Highcharts.Chart(options);
