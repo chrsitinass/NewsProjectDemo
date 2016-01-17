@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import cherrypy
 import json
+import subprocess
+import os
 from dbHelper import dbHelper
 
 db = dbHelper()
@@ -30,6 +32,8 @@ category = [
 source = [
 	u"腾讯网", u"网易", u"中国新闻网", u"凤凰网", u"人民网", u"新华网", u"新浪网"
 ]
+
+path = os.getcwd()
 
 class Api():
 	def __init__(self):
@@ -223,3 +227,23 @@ class Api():
 		result = db.execute(sql)
 		result[0]['pubtime'] = str(result[0]['pubtime'])
 		return result[0]
+
+	@cherrypy.expose
+	@cherrypy.tools.json_out()
+	def online_process(self, data):
+		data = data.encode('utf-8')
+		f = open("demo/input", "w")
+		f.write(data)
+		f.close()
+		subprocess.call(['sh', 'demo.sh'])
+		f = open(path + "/demo/output.txt", "r")
+		content = f.read()
+		f.close()
+		f = open(path + "/demo/output_pos.txt", "r")
+		posstr = f.read()
+		postag = posstr.split("\n")
+		f.close()
+		return {
+			'content': content,
+			'postag': postag
+		}

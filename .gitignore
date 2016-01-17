@@ -1,3 +1,6 @@
 .DS_Store
 node_modules
 static
+demo/input
+demo/output.txt
+demo/output_pos.txt

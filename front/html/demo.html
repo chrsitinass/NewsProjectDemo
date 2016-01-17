@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block title %} 新闻聚合网站-演示平台 {% endblock title %}
+
+<!-- css -->
+{% block css %}
+<!-- Custom CSS -->
+<link href="/front/css/index.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/front/css/demo.css">
+<link href="/front/css/single_news.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/front/css/wordstyle.css">
+{% endblock %}
+
+<!-- javascript -->
+{% block js %}
+<script type="text/javascript" src="/front/static/d3/d3.min.js"></script>
+<script type="text/javascript" src="/front/static/d3/d3.layout.cloud.js"></script>
+<script type="text/javascript" src="/front/js/demo.js"></script>
+{% endblock %}
+
+{% block main_content %}
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">演示平台</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading"> 单文本分析 </div>
+			<div class="panel-body">
+				<div class="alert alert-info alert-dismissable">
+					<strong>请输入预分析的中文文本</strong>
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x
+					</button>
+				</div>
+				<div class="alert alert-danger alert-dismissable" id="empty-notification">
+					<strong>输入文本不能为空</strong>
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x
+					</button>
+				</div>
+				<div class="alert alert-success alert-dismissable" id="step1-notification">
+					<strong>提交成功！正在进行处理......</strong>
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x
+					</button>
+				</div>
+				<div class="alert alert-success alert-dismissable" id="step2-notification">
+					<strong>处理完成！正在生成词云图......</strong>
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x
+					</button>
+				</div>
+				<div class="alert alert-success alert-dismissable" id="step3-notification">
+					<strong>完成词云图生成！正在进行分词......</strong>
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x
+					</button>
+				</div>
+				<div class="alert alert-success alert-dismissable" id="step4-notification">
+					<strong>完成分词！正在进行实体链接......</strong>
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x
+					</button>
+				</div>
+				<div class="alert alert-success alert-dismissable" id="end_notification">
+					<strong>处理完成！</strong>
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x
+					</button>
+				</div>				
+				<textarea class="form-control" rows="3" id="text"></textarea>
+				<div style="float: right; margin-top: 10px">
+					<button type="button" class="btn btn-success btn-outline" id="submit-text">
+						提交文本
+					</button>
+				</div>
+			</div> <!-- panel-body -->
+		</div> <!-- panel -->
+	</div> <!-- col -->
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading"> 词云图 </div>
+			<div class="panel-body" style="height: 400px; width: 100%" id="news_wordcloud">
+			</div> <!-- panel-body -->
+		</div> 
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading"> 分词和词性标注 </div>
+			<div class="panel-body">
+				<dl style="line-height: 30px;" id="news_word_seg"> </dl>
+			</div>
+		</div> 
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading"> 实体识别和实体链接 </div>
+			<div class="panel-body">
+				<dl style="line-height: 30px;" id="news_word_link"> </dl>
+			</div>
+		</div> 
+	</div>
+</div>
+{% endblock %}

@@ -18,6 +18,11 @@ String.prototype.contain = function (find) {
 	return this.indexOf(find) > -1;
 }
 
+var freq = {};
+var word_set = [];
+var frequency_list = [];
+var max_size = 1;
+
 $(document).ready(function() {
 	$.ajax({
 		url: "/api/get_single_news",
@@ -55,6 +60,31 @@ $(document).ready(function() {
 		}
 		var fix = response.content_with_url;
 		fix = fix.split(/\n| /);
+		for (word of fix) {
+			for (tag of tags) {
+				word = word.replaceAll(tag, "");
+			}
+			if (word.contain("\/url=")) {
+				word = word.replace(/\/url=.*/, "");
+			}
+			word = word.trim();
+
+			if ($.inArray(word, punc) != -1) continue;
+			if (word.length == 1) continue;
+			if (isNaN(word) == false) continue;
+			if (freq[word]) {
+				freq[word] ++;
+				if (freq[word] > max_size) {
+					max_size = freq[word];
+				}
+			} else {
+				freq[word] = 1;
+				word_set.push(word);
+			}
+		}
+		frequency_list = word_set.map(function (d) {
+			return {key: d, value: freq[d]};
+		});
 		var word_seg = "";
 		for (word of fix) {
 			var word_class = "";

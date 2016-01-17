@@ -121,11 +121,15 @@
                             	</ul>
                             	<!-- /.nav-second-level -->
                         	</li>
+                        	<li>
+                        		<a href="/demo"><i class="fa fa-list-alt fa-fw"></i> 演示平台</a>
+                        	</li>
 						</ul>
 					</div>
 					<!-- /.sidebar-collapse -->
 				</div>
 				<!-- /.navbar-static-side -->
+
 			</nav>
 			<div id="page-wrapper">
 				{% block main_content %} {% endblock %}
@@ -134,4 +138,5 @@
 	</body>
 	<!-- footer -->
 	<div class="footer"></div>
+	{% block js_end %}{% endblock %}
 </html>
