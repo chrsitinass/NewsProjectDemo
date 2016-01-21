@@ -9,6 +9,8 @@
 
 <!-- javascript -->
 {% block js %}
+<script type="text/javascript" src="/front/static/d3/d3.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
 <!-- Custom JavaScript -->
 <script type="text/javascript" src="/front/js/single_news.js"></script>
 {% endblock %}
@@ -68,5 +70,16 @@
 			</div> <!-- panel-body -->
 		</div> <!-- panel -->
 	</div> <!-- col -->
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				实体关系图
+			</div>
+			<div style="height: 500px" class="panel-body" id="entity_relation">
+			</div>
+		</div>
+	</div>
 </div>
 {% endblock %}
