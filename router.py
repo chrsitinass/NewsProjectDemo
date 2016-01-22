@@ -39,6 +39,10 @@ class NewsProject(object):
 	def demo(self):
 		return env.get_template('demo.html').render()
 
+	@cherrypy.expose
+	def news_table(self, cate=None, source=None):
+		return env.get_template('news_table.html').render(cate = cate, source = source)
+
 if __name__ == '__main__':
 	conf = {
 			'/': {

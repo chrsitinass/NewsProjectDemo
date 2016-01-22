@@ -60,12 +60,8 @@ class Api():
 			source.append(d['source'])
 		self.category = category
 		self.source = source 
-		print self.category
 
-	@cherrypy.expose
-	@cherrypy.tools.json_out()
 	def get_lastest_news(self, top=20):
-		print top
 		data = {}
 		for cate in self.category:
 			c = category_mapping[cate]
@@ -88,6 +84,50 @@ class Api():
 				d['pubtime'] = str(d['pubtime'])
 			data[c] = result
 		return data
+
+	@cherrypy.expose
+	@cherrypy.tools.json_out()
+	def get_lastest_news_by_cate(self, cate, top=30):
+		sql = """
+				SELECT 
+					outer_id, title, source, pubtime, URL, cate
+				FROM
+					temp_news
+				WHERE
+					cate = '%s'
+				ORDER BY
+					pubtime DESC
+				LIMIT
+					1, %d
+			  """ % (cate, top)
+
+		result = db.execute(sql)
+		
+		for d in result:
+			d['pubtime'] = str(d['pubtime'])
+		return result
+
+	@cherrypy.expose
+	@cherrypy.tools.json_out()
+	def get_lastest_news_by_source(self, source, top=30):
+		sql = """
+				SELECT 
+					outer_id, title, source, pubtime, URL, cate
+				FROM
+					temp_news
+				WHERE
+					source = '%s'
+				ORDER BY
+					pubtime DESC
+				LIMIT
+					1, %d
+			  """ % (source, top)
+
+		result = db.execute(sql)
+		
+		for d in result:
+			d['pubtime'] = str(d['pubtime'])
+		return result
 
 	def gen_filter(self, filter):
 		if filter == None:
@@ -127,7 +167,7 @@ class Api():
 		filters = self.gen_filter(filter)
 		sql = """
 				SELECT
-					outer_id, title, source, pubtime, URL 
+					outer_id, title, source, pubtime, URL, cate
 				FROM
 					temp_news
 				%s

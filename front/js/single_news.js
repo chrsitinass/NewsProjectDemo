@@ -141,7 +141,7 @@ $(document).ready(function() {
 				word = word.replaceAll(tag, "");
 			}
 			word = word.trim();
-			if (entity.type.length > 0 && $.inArray(word, entity_name_set) === -1) {
+			if (entity.type.length > 0 && word.length > 1 && $.inArray(word, entity_name_set) === -1) {
 				entity['name'] = word;
 				entity_set.push(entity);
 				expand_in_graph[word] = 0;

@@ -3,7 +3,6 @@
 
 <!-- javascript -->
 {% block js %}
-<script type="text/javascript" src="/front/js/index.js"></script>
 {% endblock %}
 
 <!-- css -->
@@ -15,144 +14,171 @@
 {% block main_content %}
 <div class="row">
 	<div class="col-lg-12">
-				<!--
-				<ul class="nav nav-pills">
-					<li class="active"><a href="#hot" data-toggle="tab">热点</a></li>
-					<li><a href="#finance" data-toggle="tab">财经</a></li>
-					<li><a href="#military" data-toggle="tab">军事</a></li>
-					<li><a href="#society" data-toggle="tab">社会</a></li>
-					<li><a href="#tech" data-toggle="tab">科技</a></li>
-					<li><a href="#sports" data-toggle="tab">体育</a></li>
-					<li><a href="#education" data-toggle="tab">教育</a></li>
-					<li><a href="#entertainment" data-toggle="tab">娱乐</a></li>
-					<li><a href="#law" data-toggle="tab">法律</a></li>
-					<li><a href="#travel" data-toggle="tab">旅游</a></li>
-					<li><a href="#china" data-toggle="tab">国内</a></li>
-					<li><a href="#internation" data-toggle="tab">国际</a></li>
-					<li><a href="#gangao" data-toggle="tab">港澳台</a></li>
-					<li><a href="#other" data-toggle="tab">其他</a></li>
-				</ul>
-				-->
-				<!-- Tab panes -->
-				<!--
-				<div class="tab-content">
-					<div class="tab-pane fade in active" id="hot">
-						<div class="dataTable_wrapper">
-							<table class="table table-striped table-bordered table-hover" id="dataTables_hot">
-								<thead></thead>
-								<tbody></tbody>
-							</table>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="finance">
-						<div class="dataTable_wrapper">
-							<table class="table table-striped table-bordered table-hover" id="dataTables_finance">
-								<thead></thead>
-								<tbody></tbody>
-							</table>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="society">
-						<div class="dataTable_wrapper">
-							<table class="table table-striped table-bordered table-hover" id="dataTables_society">
-								<thead></thead>
-								<tbody></tbody>
-							</table>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="military">
-						<div class="dataTable_wrapper">
-							<table class="table table-striped table-bordered table-hover" id="dataTables_military">
-								<thead></thead>
-								<tbody></tbody>
-							</table>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="tech">
-						<div class="dataTable_wrapper">
-							<table class="table table-striped table-bordered table-hover" id="dataTables_tech">
-								<thead></thead>
-								<tbody></tbody>
-							</table>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="sports">
-						<div class="dataTable_wrapper">
-							<table class="table table-striped table-bordered table-hover" id="dataTables_sports">
-								<thead></thead>
-								<tbody></tbody>
-							</table>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="education">
-						<div class="dataTable_wrapper">
-							<table class="table table-striped table-bordered table-hover" id="dataTables_education">
-								<thead></thead>
-								<tbody></tbody>
-							</table>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="entertainment">
-						<div class="dataTable_wrapper">
-							<table class="table table-striped table-bordered table-hover" id="dataTables_entertainment">
-								<thead></thead>
-								<tbody></tbody>
-							</table>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="law">
-						<div class="dataTable_wrapper">
-							<table class="table table-striped table-bordered table-hover" id="dataTables_law">
-								<thead></thead>
-								<tbody></tbody>
-							</table>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="travel">
-						<div class="dataTable_wrapper">
-							<table class="table table-striped table-bordered table-hover" id="dataTables_travel">
-								<thead></thead>
-								<tbody></tbody>
-							</table>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="china">
-						<div class="dataTable_wrapper">
-							<table class="table table-striped table-bordered table-hover" id="dataTables_china">
-								<thead></thead>
-								<tbody></tbody>
-							</table>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="internation">
-						<div class="dataTable_wrapper">
-							<table class="table table-striped table-bordered table-hover" id="dataTables_internation">
-								<thead></thead>
-								<tbody></tbody>
-							</table>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="gangao">
-						<div class="dataTable_wrapper">
-							<table class="table table-striped table-bordered table-hover" id="dataTables_gangao">
-								<thead></thead>
-								<tbody></tbody>
-							</table>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="other">
-						<div class="dataTable_wrapper">
-							<table class="table table-striped table-bordered table-hover" id="dataTables_other">
-								<thead></thead>
-								<tbody></tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-				-->
-			</div>
+		<h1 class="page-header">类别</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<div class="tile">
+			<img class="tile-image big-illustration" alt="" src="/front/img/icons/Hot-512.png" />
+			<a class="btn btn-outline btn-danger btn-large btn-block" href="/news_table?cate=hot"> 热点新闻
+			<i class="fa fa-arrow-circle-right"></i></a>
 		</div>
 	</div>
-	<!-- /.col-lg-12 -->
+	<div class="col-md-3">
+		<div class="tile">
+			<img class="tile-image big-illustration" alt="" src="/front/img/icons/finance-512.png" />
+			<a class="btn btn-outline btn-primary btn-large btn-block" href="/news_table?cate=finance"> 财经新闻
+			<i class="fa fa-arrow-circle-right"></i></a>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="tile">
+			<img class="tile-image big-illustration" alt="" src="/front/img/icons/Fighter_Jet_II-512.png" />
+			<a class="btn btn-outline btn-warning btn-large btn-block" href="/news_table?cate=military"> 军事新闻
+			<i class="fa fa-arrow-circle-right"></i></a>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="tile">
+			<img class="tile-image big-illustration" alt="" src="/front/img/icons/society-512.png" />
+			<a class="btn btn-outline btn-info btn-large btn-block" href="/news_table?cate=society"> 社会新闻
+			<i class="fa fa-arrow-circle-right"></i></a>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<div class="tile">
+			<img class="tile-image big-illustration" alt="" src="/front/img/icons/entertainment-512.png" />
+			<a class="btn btn-outline btn-success btn-large btn-block" href="/news_table?cate=entertainment"> 娱乐新闻
+			<i class="fa fa-arrow-circle-right"></i></a>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="tile">
+			<img class="tile-image big-illustration" alt="" src="/front/img/icons/technology-512.png" />
+			<a class="btn btn-outline btn-info btn-large btn-block" href="/news_table?cate=tech"> 科技新闻
+			<i class="fa fa-arrow-circle-right"></i></a>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="tile">
+			<img class="tile-image big-illustration" alt="" src="/front/img/icons/sports-512.png" />
+			<a class="btn btn-outline btn-success btn-large btn-block" href="/news_table?cate=sports"> 体育新闻
+			<i class="fa fa-arrow-circle-right"></i></a>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="tile">
+			<img class="tile-image big-illustration" alt="" src="/front/img/icons/education-512.png" />
+			<a class="btn btn-outline btn-warning btn-large btn-block" href="/news_table?cate=education"> 教育新闻
+			<i class="fa fa-arrow-circle-right"></i></a>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<div class="tile">
+			<img class="tile-image big-illustration" alt="" src="/front/img/icons/law-512.png" />
+			<a class="btn btn-outline btn-success btn-large btn-block" href="/news_table?cate=law"> 法律新闻
+			<i class="fa fa-arrow-circle-right"></i></a>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="tile">
+			<img class="tile-image big-illustration" alt="" src="/front/img/icons/travel-11-512.png" />
+			<a class="btn btn-outline btn-danger btn-large btn-block" href="/news_table?cate=travel"> 旅游新闻
+			<i class="fa fa-arrow-circle-right"></i></a>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="tile">
+			<img class="tile-image big-illustration" alt="" src="/front/img/icons/china-512.png" />
+			<a class="btn btn-outline btn-danger btn-large btn-block" href="/news_table?cate=china"> 国内新闻
+			<i class="fa fa-arrow-circle-right"></i></a>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="tile">
+			<img class="tile-image big-illustration" alt="" src="/front/img/icons/international-512.png" />
+			<a class="btn btn-outline btn-success btn-large btn-block" href="/news_table?cate=internation"> 国际新闻
+			<i class="fa fa-arrow-circle-right"></i></a>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<div class="tile">
+			<img class="tile-image big-illustration" alt="" src="/front/img/icons/gangao.png" />
+			<a class="btn btn-outline btn-danger btn-large btn-block" href="/news_table?cate=gangao"> 港澳台新闻
+			<i class="fa fa-arrow-circle-right"></i></a>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="tile">
+			<img class="tile-image big-illustration" alt="" src="/front/img/icons/other-512.png" />
+			<a class="btn btn-outline btn-primary btn-large btn-block" href="/news_table?cate=other"> 其他新闻
+			<i class="fa fa-arrow-circle-right"></i></a>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">来源</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<div class="tile">
+			<img class="tile-image big-illustration" alt="" src="/front/img/icons/qq.png" />
+			<a class="btn btn-outline btn-primary btn-large btn-block" href="/news_table?source=qq"> 腾讯新闻
+			<i class="fa fa-arrow-circle-right"></i></a>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="tile">
+			<img class="tile-image big-illustration" alt="" src="/front/img/icons/sina.png" />
+			<a class="btn btn-outline btn-warning btn-large btn-block" href="/news_table?source=sina"> 新浪新闻
+			<i class="fa fa-arrow-circle-right"></i></a>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="tile">
+			<img class="tile-image big-illustration" alt="" src="/front/img/icons/ifeng.jpg" />
+			<a class="btn btn-outline btn-danger btn-large btn-block" href="/news_table?source=ifeng"> 凤凰新闻
+			<i class="fa fa-arrow-circle-right"></i></a>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="tile">
+			<img class="tile-image big-illustration" alt="" src="/front/img/icons/chnews.jpg" />
+			<a class="btn btn-outline btn-danger btn-large btn-block" href="/news_table?source=chnews"> 中国新闻网
+			<i class="fa fa-arrow-circle-right"></i></a>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<div class="tile">
+			<img class="tile-image big-illustration" alt="" src="/front/img/icons/163.jpg" />
+			<a class="btn btn-outline btn-danger btn-large btn-block" href="/news_table?source=163"> 网易新闻
+			<i class="fa fa-arrow-circle-right"></i></a>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="tile">
+			<img class="tile-image big-illustration" alt="" src="/front/img/icons/people.jpg" style="width: 160px"/>
+			<a class="btn btn-outline btn-danger btn-large btn-block" href="/news_table?source=people"> 人民网
+			<i class="fa fa-arrow-circle-right"></i></a>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="tile">
+			<img class="tile-image big-illustration" alt="" src="/front/img/icons/xinhua.jpg" style="width: 200px"/>
+			<a class="btn btn-outline btn-info btn-large btn-block" href="/news_table?source=xinhua"> 新华网
+			<i class="fa fa-arrow-circle-right"></i></a>
+		</div>
+	</div>
 </div>
 {% endblock %}

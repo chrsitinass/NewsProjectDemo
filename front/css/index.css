@@ -15,3 +15,37 @@ table.dataTable thead > tr > th {
 	text-align: center;
 	font-size: 10px;
 }
+
+/*
+Flat UI
+ */
+.tile {
+  border-radius: 6px;
+  padding: 14px;
+  position: relative;
+  text-align: center; }
+  .tile.tile-hot:before {
+    background: url("../images/tile/ribbon.png") 0 0 no-repeat;
+    background-size: 82px 82px;
+    content: "";
+    height: 82px;
+    position: absolute;
+    right: -4px;
+    top: -4px;
+    width: 82px; }
+  .tile p {
+    font-size: 15px;
+    margin-bottom: 33px; }
+
+.tile-image {
+  height: 100px;
+  margin: 31px 0 27px;
+  vertical-align: bottom; }
+  .tile-image.big-illustration {
+    height: 111px;
+    margin-top: 20px;
+    width: 112px; }
+
+.tile-title {
+  font-size: 20px;
+  margin: 0; }
